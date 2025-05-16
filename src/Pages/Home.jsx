@@ -6,6 +6,36 @@ import { useMemo } from "react";
 
 
 export default function Home() {
+    const slides = [
+        {
+            id: 1,
+            image: "https://images.uzum.uz/cvcg2f3vgbkm5ehkika0/main_page_banner.jpg",
+            caption: "Welcome to Our Store",
+            Link: ''
+        },
+        {
+            id: 2,
+            image: "https://images.uzum.uz/d0hes233uvph509ttlq0/main_page_banner.jpg",
+            caption: "Big Discounts Available",
+            Link: ''
+        },
+        {
+            id: 3,
+            image: "https://images.uzum.uz/d0ddtc0n274j5scll7v0/main_page_banner.jpg",
+            caption: "Shop Your Favorite Products",
+            Link: ''
+        },
+    ];
+
+    const FeaturedCategories = [
+        { id: 1, name: "Milck", Link: '' },
+        { id: 2, name: "Meat", Link: '' },
+        { id: 3, name: "Coffee", Link: '' },
+        { id: 4, name: "Drick", Link: '' },
+        { id: 5, name: "Fruit", Link: '' },
+
+    ]
+
     const [current, setCurrent] = useState(0);
 
     useEffect(() => {
@@ -52,13 +82,13 @@ export default function Home() {
                 {/* Arrow tugmalar */}
                 <button
                     onClick={prevSlide}
-                    className="z-[100] absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-30 text-white px-3 py-2 rounded-full hover:bg-opacity-60"
+                    className="z-[100] absolute top-1/2 left-4 transform -translate-y-1/2 bg-black opacity-60 cursor-pointer text-white px-3 py-2 rounded-full hover:bg-opacity-60"
                 >
                     <box-icon name="chevron-left" color="white"></box-icon>
                 </button>
                 <button
                     onClick={nextSlide}
-                    className="z-[100] absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-30 text-white px-3 py-2 rounded-full hover:bg-opacity-60"
+                    className="z-[100] absolute top-1/2 right-4 transform -translate-y-1/2 bg-black opacity-60 text-white px-3 py-2 rounded-full hover:bg-opacity-60"
                 >
                     <box-icon name="chevron-right" color="white"></box-icon>
                 </button>
@@ -98,47 +128,10 @@ export default function Home() {
                     </div>
                 </div>
                 <div className="grid grid-cols-2 mt-10 md:grid-cols-6 w-[90%] m-auto gap-4">
-                    
+
                 </div>
             </div>
         </>
     );
 }
 
-
-
-
-
-
-
-
-
-const slides = [
-    {
-        id: 1,
-        image: "https://images.uzum.uz/cvcg2f3vgbkm5ehkika0/main_page_banner.jpg",
-        caption: "Welcome to Our Store",
-        Link: ''
-    },
-    {
-        id: 2,
-        image: "https://images.uzum.uz/d0hes233uvph509ttlq0/main_page_banner.jpg",
-        caption: "Big Discounts Available",
-        Link: ''
-    },
-    {
-        id: 3,
-        image: "https://images.uzum.uz/d0ddtc0n274j5scll7v0/main_page_banner.jpg",
-        caption: "Shop Your Favorite Products",
-        Link: ''
-    },
-];
-
-const FeaturedCategories = [
-    { id: 1, name: "Milck", Link: '' },
-    { id: 2, name: "Meat", Link: '' },
-    { id: 3, name: "Coffee", Link: '' },
-    { id: 4, name: "Drick", Link: '' },
-    { id: 5, name: "Fruit", Link: '' },
-
-]
