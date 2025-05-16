@@ -53,6 +53,15 @@ export default function Footer() {
     }
   ];
 
+  const linkContact = [
+    {name: 'instagram'},
+    {name: 'youtube'},
+    {name: 'twitter'},
+    {name: 'facebook'},
+    {name: 'pinterest-alt'}
+  ]
+
+
   return (
      
     <footer className="bg-gray-100 text-gray-800">
@@ -77,10 +86,10 @@ export default function Footer() {
             <div className="mb-8">
               <h3 className="text-lg font-semibold mb-4">Install App</h3>
               <div className="flex flex-wrap gap-4">
-                <button className="bg-black text-white px-4 py-2 rounded flex items-center">
+                <button className="bg-black cursor-pointer hover:bg-gray-700 transition-[0.3s] text-white px-4 py-2 rounded flex items-center">
                   <span className="mr-2">Appstore</span>
                 </button>
-                <button className="bg-black text-white px-4 py-2 rounded flex items-center">
+                <button className="bg-black cursor-pointer hover:bg-gray-700 transition-[0.3s] text-white px-4 py-2 rounded flex items-center">
                   <span className="mr-2">Google Play</span>
                 </button>
               </div>
@@ -91,10 +100,18 @@ export default function Footer() {
               <h3 className="text-lg font-semibold mb-4">Secured Payment Gateway:</h3>
               <div className="flex flex-wrap gap-4">
                 {/* Payment icons would go here */}
-                <div className="bg-gray-200 w-12 h-8"></div>
-                <div className="bg-gray-200 w-12 h-8"></div>
-                <div className="bg-gray-200 w-12 h-8"></div>
-                <div className="bg-gray-200 w-12 h-8"></div>
+                <div className="w-12 h-8">
+                  <img src='https://cdn4.iconfinder.com/data/icons/flat-brand-logo-2/512/visa-512.png' alt="" />
+                </div>
+                <div className="w-12 h-8">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="" />
+                </div>
+                <div className="w-12 h-8">
+                  <img src="https://brandlogos.net/wp-content/uploads/2012/10/maestro-card-vector-logo.png" alt="" />
+                </div>
+                <div className="w-12 h-8">
+                  <img src="https://api.logobank.uz/media/logos_png/Uzcard-01.png" alt="" />
+                </div>
               </div>
             </div>
           </div>
@@ -107,7 +124,7 @@ export default function Footer() {
               <ul className="space-y-2">
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
-                    <a href="#" className="hover:text-green-600 transition-colors">
+                    <a href="#" className="hover:text-green-600 transition-colors hover:translate-x-2">
                       {link}
                     </a>
                   </li>
@@ -128,10 +145,17 @@ export default function Footer() {
               <p className="mb-4">Up to 12% discount on your first subscribe</p>
               <div className="flex justify-center space-x-4">
                 {/* Social icons would go here */}
-                <div className="bg-gray-200 w-8 h-8 rounded-full"></div>
-                <div className="bg-gray-200 w-8 h-8 rounded-full"></div>
-                <div className="bg-gray-200 w-8 h-8 rounded-full"></div>
-                <div className="bg-gray-200 w-8 h-8 rounded-full"></div>
+                {
+                  linkContact.map((item, index) => {
+                    return(
+                      <div className="w-10 h-10 bg-green-600 rounded-3xl flex items-center justify-center cursor-pointer hover:scale-120 transition-[0.3s]">
+                        <a href="" className='h-full w-full flex items-center justify-center'>
+                          <box-icon name={item.name} type='logo' color='white'></box-icon>
+                        </a>
+                      </div>
+                    )
+                  })
+                }
               </div>
             </div>
 
