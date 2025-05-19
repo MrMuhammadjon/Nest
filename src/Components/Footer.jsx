@@ -148,7 +148,7 @@ export default function Footer() {
                 {
                   linkContact.map((item, index) => {
                     return(
-                      <div className="w-10 h-10 bg-green-600 rounded-3xl flex items-center justify-center cursor-pointer hover:scale-120 transition-[0.3s]">
+                      <div key={index} className="w-10 h-10 bg-green-600 rounded-3xl flex items-center justify-center cursor-pointer hover:scale-120 transition-[0.3s]">
                         <a href="" className='h-full w-full flex items-center justify-center'>
                           <box-icon name={item.name} type='logo' color='white'></box-icon>
                         </a>

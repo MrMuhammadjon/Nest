@@ -90,13 +90,18 @@ export default function Home() {
 
     const { data, loading, error } = useAPI("https://dummyjson.com/carts?limit=4");
 
+    console.log(data);
+    console.log(loading);
+    
+    console.log('salom');
+
+
     if (loading) return <p className="p-4">Loading...</p>;
     if (error) return <p className="p-4 text-red-500">Error: {error}</p>;
 
     // Flatten all products from all carts
     const products = data?.carts?.flatMap((cart) => cart.products) || [];
 
-    console.log(products);
 
 
 
@@ -172,19 +177,21 @@ export default function Home() {
                 <div className="container mx-auto px-4 py-8">
                     <div className="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4">
                         {FeaturedCategoriesData.map((item) => (
-                            <div
-                                key={item.id}
-                                className={`${item.bgColor} border border-gray-200 rounded-3xl p-4 flex flex-col items-center justify-center transition-all hover:scale-105 hover:shadow-md cursor-pointer h-36`}
-                            >
-                                <img
-                                    src={item.icon}
-                                    alt={item.name}
-                                    className="w-12 h-12 mb-3 object-contain"
-                                />
-                                <h3 className="text-sm md:text-base font-medium text-center text-gray-800">
-                                    {item.name}
-                                </h3>
-                            </div>
+                            <a href="">
+                                <div
+                                    key={item.id}
+                                    className={`${item.bgColor} border border-gray-200 rounded-3xl p-4 flex flex-col items-center justify-center transition-all hover:scale-105 hover:shadow-md cursor-pointer h-36`}
+                                >
+                                    <img
+                                        src={item.icon}
+                                        alt={item.name}
+                                        className="w-12 h-12 mb-3 object-contain"
+                                    />
+                                    <h3 className="text-sm md:text-base font-medium text-center text-gray-800">
+                                        {item.name}
+                                    </h3>
+                                </div>
+                            </a>
                         ))}
                     </div>
                 </div>
@@ -193,51 +200,50 @@ export default function Home() {
             <div className="container mx-auto px-4 py-8 md:py-12">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {rekamCategories.map((item, index) => (
-                        <div
-                            key={index}
-                            className={`${item.bgColor} group relative rounded-3xl overflow-hidden h-80 hover:shadow-lg transition-all duration-300`}
-                        >
-                            {/* Background Image */}
-                            {item.img && (
-                                <img
-                                    src={item.img}
-                                    alt={item.titel}
-                                    className="w-full h-full object-cover opacity-70 group-hover:opacity-10 transition-opacity duration-300"
-                                />
-                            )}
+                        <a href="">
+                            <div
+                                key={index}
+                                className={`${item.bgColor} group relative rounded-3xl overflow-hidden h-80 hover:shadow-lg transition-all duration-300`}
+                            >
+                                {/* Background Image */}
+                                {item.img && (
+                                    <img
+                                        src={item.img}
+                                        alt={item.titel}
+                                        className="w-full h-full object-cover opacity-70 group-hover:opacity-10 transition-opacity duration-300"
+                                    />
+                                )}
 
-                            {/* Content Overlay */}
-                            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                                <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 z-10">
-                                    {item.titel}
-                                </h2>
-                                <button className="z-10 bg-white text-gray-800 hover:bg-gray-800 cursor-pointer hover:text-white px-6 py-2 rounded-full font-medium transition-colors duration-300 shadow-md">
-                                    {item.button}
-                                </button>
+                                {/* Content Overlay */}
+                                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                                    <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 z-10">
+                                        {item.titel}
+                                    </h2>
+                                    <button className="z-10 bg-white text-gray-800 hover:bg-gray-800 cursor-pointer hover:text-white px-6 py-2 rounded-full font-medium transition-colors duration-300 shadow-md">
+                                        {item.button}
+                                    </button>
+                                </div>
+
+                                {/* Gradient Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
                             </div>
-
-                            {/* Gradient Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-                        </div>
+                        </a>
                     ))}
                 </div>
             </div>
 
-            <div className="px-4 py-6 w-[90%] m-auto">
+            <div className="py-6 w-[90%] m-auto">
                 <h1 className="text-2xl font-bold mb-4">Popular Products</h1>
                 <div className="w-full">
-                    <div className="px-4 py-6 w-full">
+                    <div className="py-6 w-full">
                         <h1 className="text-2xl font-bold mb-4">Cart Products</h1>
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 w-full">
-                            {products.map((product) => (
-                                <div key={product.id} className="bg-white rounded-xl shadow-md overflow-hidden">
-                                    {/* Product Tag */}
+                            {products.map((product, index) => (
+                                <div key={`${product.id}-${index}`} className="bg-white rounded-xl shadow-md overflow-hidden flex flex-col justify-between">
                                     <div className="absolute bg-indigo-600 text-white text-xs font-bold px-2 py-1 m-2 rounded">
-                                        {/* {product.title} */}
                                     </div>
 
-                                    {/* Product Image */}
-                                    <div className="h-48 bg-gray-200 flex items-center justify-center">
+                                    <div className="h-38 bg-gray-200 flex items-center justify-center">
                                         <img
                                             src={product.thumbnail}
                                             alt={product.title}
@@ -245,19 +251,12 @@ export default function Home() {
                                         />
                                     </div>
 
-                                    {/* Product Details */}
-                                    <div className="p-4">
-                                        <h2 className="font-semibold text-lg">{product.title}</h2>
-                                        {/* <p className="text-gray-600 text-sm mt-1">{product.description}</p> */}
-                                        <div className="mt-3 flex justify-between items-center">
+                                    <h2 className="text-lg px-4 font-thin py-2 text-[16px]">{product.title}</h2>
+                                    <div className="p-4 w-full">
+                                        <div className="mt-3 flex justify-between items-center ">
                                             <span className="font-bold text-gray-900">${product.price.toFixed(2)}</span>
-                                            <button
-                                                className="px-3 py-1 rounded text-sm 
-                                                     cursor-not-allowed
-                                                    bg-indigo-600 hover:bg-indigo-700 text-white"
-
-                                            >
-
+                                            <button className="px-4 py-1 rounded-3xl text-sm bg-green-200 border-2 border-green-200 hover:bg-white text-green-600 cursor-pointer transition-[0.3s] hover:text-green-600 flex gap-2.5">
+                                               <box-icon name='basket' color="green"></box-icon> buy
                                             </button>
                                         </div>
                                     </div>

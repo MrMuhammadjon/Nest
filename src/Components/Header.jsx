@@ -102,7 +102,7 @@ export default function Header() {
                     </div>
                 )}
             </header>
-            <div className="w-full border-t border-gray-200 bg-white">
+            <div className="w-full border-t border-gray-200 bg-white">  
                 <div className="w-[90%] mx-auto flex items-center justify-between py-3 gap-10 md:gap-0">
                     <button className="bg-green-600 hover:bg-green-500 transition-[0.3s] text-white w-[220px] py-2 rounded flex items-center justify-center gap-2 cursor-pointer">
                         <box-icon name='category-alt' color='#ffffff' ></box-icon> Browse All Categories

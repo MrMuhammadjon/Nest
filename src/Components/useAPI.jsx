@@ -34,5 +34,8 @@ export default function useAPI(url) {
     };
   }, [url]);
 
+  console.log(data);
+  
+
   return { data, loading, error };
 }
