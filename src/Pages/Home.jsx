@@ -5,6 +5,7 @@ import { useMemo } from "react";
 
 
 
+
 export default function Home() {
     const slides = [
         {
@@ -88,19 +89,17 @@ export default function Home() {
         setCurrent((prev) => (prev + 1) % slides.length);
     };
 
-    const { data, loading, error } = useAPI("https://dummyjson.com/carts?limit=4");
 
-    console.log(data);
-    console.log(loading);
-    
-    console.log('salom');
-
+    const { data, loading, error } = useAPI("https://dummyjson.com/products");
 
     if (loading) return <p className="p-4">Loading...</p>;
     if (error) return <p className="p-4 text-red-500">Error: {error}</p>;
 
-    // Flatten all products from all carts
-    const products = data?.carts?.flatMap((cart) => cart.products) || [];
+    const products = data?.carts?.flatMap(cart => cart.products) || [];
+
+
+    console.log(products);
+
 
 
 
@@ -176,10 +175,10 @@ export default function Home() {
                 </div>
                 <div className="container mx-auto px-4 py-8">
                     <div className="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4">
-                        {FeaturedCategoriesData.map((item) => (
-                            <a href="">
+                        {FeaturedCategoriesData.map((item, index) => (
+                            <a href={item.name}>
                                 <div
-                                    key={item.id}
+                                    key={index}
                                     className={`${item.bgColor} border border-gray-200 rounded-3xl p-4 flex flex-col items-center justify-center transition-all hover:scale-105 hover:shadow-md cursor-pointer h-36`}
                                 >
                                     <img
@@ -239,28 +238,34 @@ export default function Home() {
                         <h1 className="text-2xl font-bold mb-4">Cart Products</h1>
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 w-full">
                             {products.map((product, index) => (
-                                <div key={`${product.id}-${index}`} className="bg-white rounded-xl shadow-md overflow-hidden flex flex-col justify-between">
-                                    <div className="absolute bg-indigo-600 text-white text-xs font-bold px-2 py-1 m-2 rounded">
+                                <div key={index} className="rounded-xl shadow-md border border-gray-200 p-4 flex flex-col gap-2 bg-white hover:shadow-lg transition-all">
+                                    {/* <img
+                                        src={product.thumbnail}
+                                        alt={product.title}
+                                        className="w-full h-40 object-contain rounded-md"
+                                    /> */}
+                                    <p className="text-gray-400 text-xs">Meats</p>
+                                    <h2 className="text-sm font-semibold leading-5 text-gray-900">
+                                        {product.title}
+                                    </h2>
+                                    <div className="flex items-center gap-1 text-yellow-500 text-xs">
+                                        <box-icon name="star" color="gold" size="xs"></box-icon>
+                                        {/* <span className="text-gray-500">({product.quantity}.0)</span> */}
                                     </div>
-
-                                    <div className="h-38 bg-gray-200 flex items-center justify-center">
-                                        <img
-                                            src={product.thumbnail}
-                                            alt={product.title}
-                                            className="h-full object-cover"
-                                        />
+                                    <div className="text-xs text-gray-400">
+                                        By <span className="text-green-600 font-semibold">NestFood</span>
                                     </div>
-
-                                    <h2 className="text-lg px-4 font-thin py-2 text-[16px]">{product.title}</h2>
-                                    <div className="p-4 w-full">
-                                        <div className="mt-3 flex justify-between items-center ">
-                                            <span className="font-bold text-gray-900">${product.price.toFixed(2)}</span>
-                                            <button className="px-4 py-1 rounded-3xl text-sm bg-green-200 border-2 border-green-200 hover:bg-white text-green-600 cursor-pointer transition-[0.3s] hover:text-green-600 flex gap-2.5">
-                                               <box-icon name='basket' color="green"></box-icon> buy
-                                            </button>
+                                    <div className="flex justify-between items-center mt-2">
+                                        <div>
+                                            {/* <span className="text-lg font-bold text-green-600">${product.price}</span> */}
+                                            {/* <span className="line-through text-sm text-gray-400 ml-1">${product.total.toFixed(2)}</span> */}
                                         </div>
+                                        <button className="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded flex items-center gap-1 hover:bg-green-200 transition">
+                                            <box-icon name='basket' color='green' size="xs"></box-icon> Add
+                                        </button>
                                     </div>
                                 </div>
+
                             ))}
                         </div>
                     </div>
